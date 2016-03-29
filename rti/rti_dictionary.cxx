@@ -70,7 +70,109 @@ rti_dictionary::push_back(rti_word_sptr word)
 { 
   words_.push_back(word); 
 }
+//New Code
+void
+rti_dictionary::incWordFreq(vcl_string word, int pos)
+{
+    if(word = words_[pos])
+    {
+        frequency_++;
+    }
+}
 
+void
+rti_dictionary::getWordsAdded(listofWords[])
+{   for(int i; listofWords.size(); i++){
+    rti_word_sptr word = listofWords[i];
+    insert(rti_word_sptr word, int idx);
+}
+    return 0;
+}
+
+void
+rti_dictionary::incomplete()
+{
+    if( word = "XXX")
+        cout<< word;
+return 0;
+}
+
+
+rti_word_sptr
+rti_dictionary::get(vcl_string word)
+{
+    for(int i = 0; i< words_.size; i++)
+    {
+        if(words_.at(i)->word() == word)
+        {
+            return words_.at(i);
+        }
+    }
+}
+
+std::vector<rti_word_sptr>
+rti_dictionary::getWords()
+{
+    return words_;
+}
+
+void
+rti_dictionary::displayMessage()
+{
+    cout<<"There are no differences between the lists";
+    return 0;
+}
+
+void
+rti_dictionary::displayList(const vcl_string& filename)
+{
+     words_.clear();
+  is_empty_ = true;
+  is_valid_ = true;
+
+	XMLDocument xmlDoc;
+
+  //Parse the resource
+  XMLError eResult = xmlDoc.LoadFile(filename.c_str() );
+  XMLCheckResult(eResult);
+
+	/*Get the root element node */
+  XMLElement * pRoot = xmlDoc.RootElement();
+  if (pRoot == nullptr) return XML_ERROR_FILE_READ_ERROR;
+
+  //Read the words
+	words_.reserve(10000);
+  XMLElement* pElement = pRoot->FirstChildElement();
+  while (pElement != nullptr) {
+    rti_word_sptr word = new rti_word();
+    word->read_xml_node(pElement);
+    cout<< word;
+    if (!word->valid()) {
+      is_valid_ = false;
+
+    }
+
+  }
+  if (!is_valid_)
+     vcl_cout<<xml_filename<<" has incomplete entries"<<vcl_endl;
+
+  is_empty_ = false;
+  return XML_SUCCESS;
+}
+
+
+void
+rti_dictionary::compareLists(vcl_string age_range,  )
+{
+
+}
+
+void
+rti_dictionary::importDictionary(dictionary)
+{
+
+}
+//New Code
 void 
 rti_dictionary::compute_PSegAves()
 {
